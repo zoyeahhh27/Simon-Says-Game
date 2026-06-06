@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Simon Says</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Particle canvas background -->
+  <canvas id="particles"></canvas>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span class="logo-s">S</span><span class="logo-rest">IMON</span>
+      <span class="logo-tag">SAYS</span>
+    </div>
+    <div class="header-right">
+      <div class="stat-pill" id="streak-display" title="Current Streak">
+        <span class="stat-icon">🔥</span>
+        <span id="streak-val">0</span>
+      </div>
+      <button class="icon-btn" id="sound-toggle" title="Toggle Sound">🔊</button>
+      <button class="icon-btn" id="leaderboard-btn" title="Leaderboard">🏆</button>
+    </div>
+  </header>
+
+  <!-- Main Game Area -->
+  <main>
+    <!-- Status bar -->
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-label">LEVEL</span>
+        <span class="status-value" id="level-display">—</span>
+      </div>
+      <div class="status-item center">
+        <span id="status-msg" class="status-msg">TAP TO START</span>
+      </div>
+      <div class="status-item right">
+        <span class="status-label">BEST</span>
+        <span class="status-value" id="best-display">0</span>
+      </div>
+    </div>
+
+    <!-- Difficulty selector -->
+    <div class="difficulty-row" id="difficulty-row">
+      <button class="diff-btn active" data-diff="easy">EASY</button>
+      <button class="diff-btn" data-diff="medium">MEDIUM</button>
+      <button class="diff-btn" data-diff="hard">HARD</button>
+    </div>
+
+    <!-- Simon Board -->
+    <div class="board-wrapper">
+      <div class="board" id="board">
+        <div class="board-center">
+          <div class="center-logo">S</div>
+          <div id="progress-ring-wrapper">
+            <svg class="progress-ring" viewBox="0 0 80 80">
+              <circle class="ring-bg" cx="40" cy="40" r="34"/>
+              <circle class="ring-fill" id="ring-fill" cx="40" cy="40" r="34"/>
+            </svg>
+          </div>
+        </div>
+        <button class="pad" id="pad-red"     data-color="red"    aria-label="Red"></button>
+        <button class="pad" id="pad-blue"    data-color="blue"   aria-label="Blue"></button>
+        <button class="pad" id="pad-green"   data-color="green"  aria-label="Green"></button>
+        <button class="pad" id="pad-yellow"  data-color="yellow" aria-label="Yellow"></button>
+      </div>
+    </div>
+
+    <!-- Start / Restart button -->
+    <button class="start-btn" id="start-btn">START GAME</button>
+
+    <!-- Combo display -->
+    <div class="combo-display" id="combo-display"></div>
+  </main>
+
+  <!-- Leaderboard Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="leaderboard-modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <h2 class="modal-title">🏆 LEADERBOARD</h2>
+      <div class="lb-tabs">
+        <button class="lb-tab active" data-diff="easy">EASY</button>
+        <button class="lb-tab" data-diff="medium">MEDIUM</button>
+        <button class="lb-tab" data-diff="hard">HARD</button>
+      </div>
+      <ol class="lb-list" id="lb-list"></ol>
+      <button class="clear-btn" id="clear-scores">Clear Scores</button>
+    </div>
+  </div>
+
+  <!-- Game Over Overlay -->
+  <div class="gameover-overlay" id="gameover-overlay">
+    <div class="gameover-card">
+      <div class="gameover-title">GAME OVER</div>
+      <div class="gameover-score">Score: <span id="go-score">0</span></div>
+      <div class="gameover-best" id="go-best-wrap">New Best: <span id="go-best">0</span> 🎉</div>
+      <div class="gameover-streak">Streak: <span id="go-streak">0</span> 🔥</div>
+      <button class="start-btn" id="go-restart">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
